@@ -11,13 +11,16 @@ end
 function BuyMenu:__init()
     self.items      = {}
     self.vehicles   = {}
+	self.vehicles2   = {}
     self.hotspots   = {}
 
     self.ammo_counts            = {
         [2] = { 12, 60 }, [4] = { 7, 35 }, [5] = { 30, 90 },
         [6] = { 3, 18 }, [11] = { 20, 100 }, [13] = { 6, 36 },
         [14] = { 4, 32 }, [16] = { 3, 12 }, [17] = { 5, 5 },
-        [28] = { 26, 130 }
+        [28] = { 26, 130 }, [100] = { 12, 120 }, [101] = { 600, 600 },
+        [102] = { 1, 20 }, [103] = { 6, 60 }, [104] = { 8, 24 },
+        [105] = { 4, 12 }
     }
 
     self:CreateItems()
@@ -64,10 +67,19 @@ function BuyMenu:PlayerQuit( args )
         self.vehicles[ args.player:GetId() ]:Remove()
         self.vehicles[ args.player:GetId() ] = nil
     end
+	if IsValid( self.vehicles2[ args.player:GetId() ] ) then
+        self.vehicles2[ args.player:GetId() ]:Remove()
+        self.vehicles2[ args.player:GetId() ] = nil
+    end
 end
 
 function BuyMenu:ModuleUnload()
     for k, v in pairs(self.vehicles) do
+        if IsValid( v ) then
+            v:Remove()
+        end
+    end
+	for k, v in pairs(self.vehicles2) do
         if IsValid( v ) then
             v:Remove()
         end
@@ -155,12 +167,32 @@ function BuyMenu:BuyVehicle( player, item, tone1, tone2 )
     if player:GetState() == PlayerState.InVehiclePassenger then
         return false, "You cannot purchase a vehicle while in the passenger seat!"
     end
-
-    if IsValid( self.vehicles[ player:GetId() ] ) then
-        self.vehicles[ player:GetId() ]:Remove()
-        self.vehicles[ player:GetId() ] = nil
+    
+    if player:InVehicle() == true then
+			if IsValid( self.vehicles[ player:GetId() ] ) and player:GetVehicle() == self.vehicles[ player:GetId() ] then
+				player:GetVehicle():Remove()
+				self.vehicles[ player:GetId() ] = nil
+			elseif IsValid( self.vehicles2[ player:GetId() ] ) and player:GetVehicle() == self.vehicles2[ player:GetId() ] then
+				player:GetVehicle():Remove()
+				self.vehicles2[ player:GetId() ] = self.vehicles[ player:GetId() ]
+			elseif IsValid( self.vehicles2[ player:GetId() ] ) then
+				player:GetVehicle():Remove()
+				self.vehicles2[ player:GetId() ]:Remove()
+				self.vehicles2[ player:GetId() ] = self.vehicles[ player:GetId() ]
+				self.vehicles[ player:GetId() ] = nil
+			else
+				player:GetVehicle():Remove()
+				self.vehicles2[ player:GetId() ] = self.vehicles[ player:GetId() ]
+				self.vehicles[ player:GetId() ] = nil
+			end
+    elseif IsValid( self.vehicles2[ player:GetId() ] ) then
+            self.vehicles2[ player:GetId() ]:Remove()
+            self.vehicles2[ player:GetId() ] = self.vehicles[ player:GetId() ]
+    elseif IsValid( self.vehicles[ player:GetId() ]) then
+            self.vehicles2[ player:GetId() ] = self.vehicles[ player:GetId() ]
+			self.vehicles[ player:GetId() ] = nil
     end
-
+	
     local args = {}
     args.model_id           = item:GetModelId()
     args.position           = player:GetPosition()
