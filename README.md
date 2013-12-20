@@ -1,4 +1,4 @@
-# jc2mp-buymenu-twovec
+# jc2mp-buymenu-twoveh
 This script was originally created by Philpax (Phillip Larkson). I commit some changes like:
 - Two vehicles per player (one which is used by player disappear)
 - Added weapons from DLC
