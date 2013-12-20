@@ -8,7 +8,7 @@ function BuyMenuEntry:__init( model_id, price, entry_type )
 end
 
 function BuyMenuEntry:GetPrice()
-    return self.price
+    return self.price/10
 end
 
 function BuyMenuEntry:GetModelId()
@@ -76,18 +76,28 @@ function BuyMenu:CreateItems()
         [self.types.Vehicle] = {
             { "Land", "Air", "Sea" },
             ["Land"] = {
+                VehicleBuyMenuEntry( 1, 750 ),
                 VehicleBuyMenuEntry( 2, 1000 ),
                 VehicleBuyMenuEntry( 4, 750 ),
+                VehicleBuyMenuEntry( 7, 300 ),
+                VehicleBuyMenuEntry( 8, 300 ),
+                VehicleBuyMenuEntry( 10, 300 ),
                 VehicleBuyMenuEntry( 11, 250 ),
+                VehicleBuyMenuEntry( 12, 300 ),
                 VehicleBuyMenuEntry( 13, 600 ),
                 VehicleBuyMenuEntry( 18, 5000 ),
                 VehicleBuyMenuEntry( 21, 400 ),
                 VehicleBuyMenuEntry( 22, 200 ),
+                VehicleBuyMenuEntry( 31, 8000 ),
                 VehicleBuyMenuEntry( 35, 1500 ),
+                VehicleBuyMenuEntry( 36, 3000 ),
+                VehicleBuyMenuEntry( 42, 3000 ),
                 VehicleBuyMenuEntry( 43, 400 ),
                 VehicleBuyMenuEntry( 46, 800 ),
+                VehicleBuyMenuEntry( 48, 3000 ),
                 VehicleBuyMenuEntry( 54, 1000 ),
                 VehicleBuyMenuEntry( 56, 5000 ),
+                VehicleBuyMenuEntry( 61, 1500 ),
                 VehicleBuyMenuEntry( 72, 800 ),
                 VehicleBuyMenuEntry( 76, 2000 ),
                 VehicleBuyMenuEntry( 77, 2500 ),
@@ -97,35 +107,40 @@ function BuyMenu:CreateItems()
                 VehicleBuyMenuEntry( 89, 450 ),
                 VehicleBuyMenuEntry( 91, 1000 ),
                 -- DLC
-                --VehicleBuyMenuEntry( 20, 8000 ),
-                --VehicleBuyMenuEntry( 58, 2000 ),
-                --VehicleBuyMenuEntry( 75, 1000 ),
-                --VehicleBuyMenuEntry( 82, 1000 )
+                VehicleBuyMenuEntry( 20, 8000 ),
+                VehicleBuyMenuEntry( 58, 2000 ),
+                VehicleBuyMenuEntry( 75, 1000 ),
+                VehicleBuyMenuEntry( 82, 1000 )
             },
 
             ["Sea"] = {
                 VehicleBuyMenuEntry( 5, 500 ),
+                VehicleBuyMenuEntry( 6, 300 ),
                 VehicleBuyMenuEntry( 16, 500 ),
                 VehicleBuyMenuEntry( 25, 700 ),
                 VehicleBuyMenuEntry( 27, 1100 ),
                 VehicleBuyMenuEntry( 28, 900 ),
+                VehicleBuyMenuEntry( 50, 1750 ),
                 VehicleBuyMenuEntry( 69, 1000 ),
                 VehicleBuyMenuEntry( 80, 1000 ),
                 VehicleBuyMenuEntry( 88, 1050 ),
                 -- DLC
-                --VehicleBuyMenuEntry( 53, 10000 )
+                VehicleBuyMenuEntry( 53, 10000 )
             },
 
             ["Air"] = {
                 VehicleBuyMenuEntry( 3, 3000 ),
+                VehicleBuyMenuEntry( 14, 300 ),
                 VehicleBuyMenuEntry( 30, 8000 ),
                 VehicleBuyMenuEntry( 34, 10000 ),
+                VehicleBuyMenuEntry( 39, 3000 ),
+                VehicleBuyMenuEntry( 51, 3000 ),
                 VehicleBuyMenuEntry( 64, 4000 ),
                 VehicleBuyMenuEntry( 65, 4000 ),
                 VehicleBuyMenuEntry( 81, 5000 ),
                 VehicleBuyMenuEntry( 85, 10000 ),
                 -- DLC
-                --VehicleBuyMenuEntry( 24, 15000 )
+                VehicleBuyMenuEntry( 24, 15000 )
             }
         },
 
@@ -135,7 +150,9 @@ function BuyMenu:CreateItems()
                 WeaponBuyMenuEntry( Weapon.Handgun, 500, 1, "Pistol" ),
                 WeaponBuyMenuEntry( Weapon.Revolver, 1000, 1, "Revolver" ),
                 WeaponBuyMenuEntry( Weapon.SMG, 1200, 1, "SMG" ),
-                WeaponBuyMenuEntry( Weapon.SawnOffShotgun, 1100, 1, "Sawn-off Shotgun" )
+                WeaponBuyMenuEntry( Weapon.BubbleGun, 500000, 1, "Bubble Blaster" ),
+                WeaponBuyMenuEntry( Weapon.SawnOffShotgun, 1100, 1, "Sawn-off Shotgun" ),
+                WeaponBuyMenuEntry( Weapon.SignatureGun, 3000, 1, "Rico's Gun" )
             },
 
             ["Two-handed"] = {
@@ -143,7 +160,12 @@ function BuyMenu:CreateItems()
                 WeaponBuyMenuEntry( Weapon.Shotgun, 2000, 2, "Shotgun" ),
                 WeaponBuyMenuEntry( Weapon.MachineGun, 4000, 2, "Machine Gun" ),
                 WeaponBuyMenuEntry( Weapon.Sniper, 5000, 2, "Sniper Rifle" ),
-                WeaponBuyMenuEntry( Weapon.RocketLauncher, 7500, 2, "Rocket Launcher" )
+                WeaponBuyMenuEntry( Weapon.RocketLauncher, 7500, 2, "Rocket Launcher" ),
+                WeaponBuyMenuEntry( Weapon.AlphaDLCWeapon, 600, 2, "Bullseye Rifle" ),
+                WeaponBuyMenuEntry( Weapon.Airzooka, 5000, 2, "Air Cannon" ),
+                WeaponBuyMenuEntry( Weapon.ClusterBombLauncher, 6000, 2, "Cluster Bomb Launcher" ),
+                WeaponBuyMenuEntry( Weapon.QuadRocketLauncher, 10000, 2, "Quad Rocket Launcher" ),
+                WeaponBuyMenuEntry( Weapon.MultiTargetRocketLauncher, 8000, 2, "Multi-Target Launcher" )
             }
         },
 
