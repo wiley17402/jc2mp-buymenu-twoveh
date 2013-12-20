@@ -1,6 +1,13 @@
+# jc2mp-buymenu-twovec
+This script was originally created by Philpax (Phillip Larkson). I commit some changes like:
+- Two vehicles per player (one which is used by player disappear)
+- Added weapons from DLC
+- Added some vehicles (all from DLC and some more interesting which weren't included)
+- Price divided by 10
+
 # jc2mp-buymenu
 
-The JC2-MP buy menu script implements a fully-featured buy menu within the game, allowing you to purchase vehicles, weapons and skins. This script ran in the JC2-MP public beta tests, and has been tested significantly.
+The JC2-MP buy menu script implements a fully-featured buy menu within the game, allowing you to purchase vehicles, weapons and skins.
 
 ## Adding new items
 
